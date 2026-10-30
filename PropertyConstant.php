@@ -1,5 +1,7 @@
 <?php
 
+namespace Pbo\Marketplace;
+
 class Produk
 {
     //property
@@ -45,9 +47,3 @@ class Produk
         echo "Total harga setelah pajak: Rp. " . $this->hitungTotal() . "<br/>";
     }
 }
-
-//object
-$produk = new Produk('P0001', 'laptop', 10000000, 5);
-
-//hasil
-$produk->tampil();
