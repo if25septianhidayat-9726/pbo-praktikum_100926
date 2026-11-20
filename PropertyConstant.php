@@ -2,48 +2,68 @@
 
 namespace Pbo\Marketplace;
 
-class Produk
-{
+class produk {
+
     //property
-    public string $kode;
-    public string $nama;
-    public int $harga;
-    public int $stok;
+    private string $kode;
+    private string $nama;
+    private int $harga;
+    private int $stok;
+
 
     //constant
     public const PAJAK = 0.11;
 
-    //constructor
-    public function __construct($kode, $nama, $harga, $stok)
-    {
+    public function __construct(){
+
+    }
+
+    //setter
+    public function setkode($kode) {
         $this->kode = $kode;
+        return $this;
+    }
+    public function setnama($nama) {
         $this->nama = $nama;
+        return $this;
+    }
+    public function setharga($harga) {
+        if($harga <=0){
+            echo "harga tidak boleh 0";
+            exit();
+        }
+
         $this->harga = $harga;
+        return $this;
+    }
+    public function setstok($stok) {
+        if($stok <=0){
+            echo "stok tidak boleh 0";
+            exit();
+        }
         $this->stok = $stok;
+        return $this;
     }
-
-    //method
-    public static function persenPajak(): float
-    {
-        return self::PAJAK * 100;
+    
+    //getter
+    public function getkode(){
+        return $this ->kode;
     }
-
-    public function hitungPajak(): float
-    {
-        return $this->harga * self::PAJAK;
+    public function getnama(){
+        return $this ->nama;
     }
-
-    public function hitungTotal(): float
-    {
-        return $this->harga + $this->hitungPajak();
+    public function getharga(){
+        return $this ->harga;
     }
+    public function getstok(){
+        return $this ->stok;
+    }
+    
 
-    public function tampil(): void
-    {
-        echo "Produk: " . $this->nama . "<br/>";
-        echo "Harga: Rp. " . $this->harga . "<br/>";
-        echo "Stok: " . $this->stok . "<br/>";
-        echo "Pajak: " . self::persenPajak() . "%<br/>";
-        echo "Total harga setelah pajak: Rp. " . $this->hitungTotal() . "<br/>";
+    public function pajak(){
+        return self::PAJAK * 100; //11
+    }
+    public function total (){
+        return $this->harga + ($this->harga * self::PAJAK);
     }
 }
